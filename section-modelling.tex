@@ -1,0 +1,56 @@
+\section{Energy Modelling}\label{energy-models}
+
+Energy models for software energy analysis can rely on information at several possible abstraction levels from hardware descriptions up to source code. There are various tradeoffs in the accuracy of the energy model itself and the ease with which it can be mapped onto the software whose energy is being analysed.
+
+\subsection{Defining and constructing an energy model at ISA level}
+
+The Instruction Set Architecture (ISA) is a practical level of abstraction for modelling, because it expresses
+underlying hardware operations and their relationship with the intent of the
+software. Constructing a model at this level gives us the following benefits:
+energy costs can be assigned at the instruction level; the same level
+    as is output by the compiler;
+ there are strong correlations between instruction properties and energy
+    consumption, for example the number of operands used in the instruction;
+and machine instructions can be related back to the original programming
+    statements written by the software developer, as well as to various
+    intermediate representations.
+
+The construction of an energy model at the ISA level has to address several challenges.
+ Instruction costs must be captured through a profiling suite and
+    measurement of device power. However, not all instructions can be directly profiled, requiring indirect or
+    statistical approaches to their characterisation.
+In addition, other properties such as the cost of running multiple threads and the cost of idle periods must be determined for multi-threaded architectures.
+
+\subsection{Energy modelling at higher levels of software abstraction}
+\label{subsec:mapping}
+
+Modelling at the level of the Intermediate Representation (IR) 
+used by compilers can be a useful compromise between the accuracy of a lower-level (ISA) 
+model and the to high-level source code. Since the compiler is a natural
+place for optimisations, modelling and predicting the energy consumption at
+IR level could therefore enable energy specific optimisations.
+
+Using a mapping technique, 
+the energy model at the ISA level can be lifted to the LLVM IR level, allowing energy
+consumption estimation of programs at that level. 
+The mapping technique determines the energy characteristics of LLVM IR
+instructions. It provides on-the-fly energy characterization that takes into
+consideration the context of instructions since there is no program-independent mapping between
+ISA instructions and LLVM instructions.
+
+In principle, the same mapping technique may be used to map the energy consumption
+of programs to even higher levels, such as the source code. 
+
+
+An alternative approach to building a source-level energy model is to identify
+basic energy-consuming operations from the source code and
+correlate them to energy costs by measuring energy consumption in
+a large number of test cases and analyzing the results using techniques
+based on regression analysis. The resulting energy model of the basic
+operations implicitly includes the effect of all the layers of the software
+stack down to the hardware, including compiled code, virtual machine and operating
+system layers. The approach is inherently approximate;
+nevertheless such an approach may be the only feasible one in cases where the software
+stack has many complex layers. 
+
+

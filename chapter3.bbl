@@ -1,0 +1,68 @@
+\newcommand{\etalchar}[1]{$^{#1}$}
+\begin{thebibliography}{KCWCW10}
+
+\bibitem[CFS12]{DBLP:journals/infsof/CapraFS12}
+Eugenio Capra, Chiara Francalanci, and Sandra Slaughter.
+\newblock Is software "green"? application development environments and energy
+  efficiency in open source applications.
+\newblock {\em Information {\&} Software Technology}, 54(1):60--71, 2012.
+
+\bibitem[HK16]{KerrisonSwallow15}
+Simon~J. Hollis and Steve Kerrison.
+\newblock {Swallow: Building an Energy-Transparent Many-Core Embedded Real-Time
+  System}.
+\newblock In {\em 2016 Design, Automation \& Test in Europe (to appear)}. IEEE,
+  March 2016.
+
+\bibitem[HLGL{\etalchar{+}}16]{staticprofiling-flops}
+R.~Haemmerl{\'e}, P.~Lopez-Garcia, U.~Liqat, M.~Klemen, J.~P. Gallagher, and
+  M.~V. Hermenegildo.
+\newblock {A} {T}ransformational {A}pproach to {P}arametric {A}ccumulated-cost
+  {S}tatic {P}rofiling.
+\newblock In Oleg Kiselyov and Andy King, editors, {\em 13th International
+  Symposium on Functional and Logic Programming (FLOPS 2016)}, volume 9613 of
+  {\em LNCS}, pages 163--180. Springer, March 2016.
+
+\bibitem[KCWCW10]{KrauseCraigWood2010}
+P.J. Krause, K.~Craig-Wood, and N.~Craig-Wood.
+\newblock {Green ICT}: {O}xymoron, or call to innovation?
+\newblock In {\em Proc. Green IT}, Singapore, 2010.
+
+\bibitem[Lar11]{Larsson2011}
+Petter Larsson.
+\newblock Energy-efficient software guidelines.
+\newblock Technical report, Intel Software Solutions Group, 2011.
+
+\bibitem[LG16]{LiGallagher-TSE-2016}
+Xueliang Li and John~P. Gallagher.
+\newblock An energy-aware programming approach for mobile application
+  development guided by a fine-grained energy model.
+\newblock Technical report, Roskilde University, February 2016.
+\newblock submitted for publication.
+
+\bibitem[MA13]{Mahmoud_Ahmad_2013}
+Sara~S. Mahmoud and Imtiaz Ahmad.
+\newblock A green model for sustainable software engineering.
+\newblock {\em International Journal of Software Engineering and Its
+  Applications}, 7(4), July 2013.
+
+\bibitem[NKD13]{DBLP:journals/stt/NaumannKD13}
+Stefan Naumann, Eva Kern, and Markus Dick.
+\newblock Classifying green software engineering - the {GREENSOFT} model.
+\newblock {\em Softwaretechnik-Trends}, 33(2), 2013.
+
+\bibitem[RJ97]{Roy_Johnson_1997}
+Kaushik Roy and Mark~C. Johnson.
+\newblock {S}oftware {D}esign for {L}ow {P}ower.
+\newblock In Wolfgang Nebel and Jean~P. Mermet, editors, {\em Low Power Design
+  in Deep Submicron Electronics}, volume 337, pages 433--460. Kluwer Academic,
+  1997.
+
+\bibitem[SA12]{Steigerwald_Agrawal_2011}
+B.~Steigerwald and A.~Agrawal.
+\newblock Green software.
+\newblock In San Murugesan and G.~R. Gangadharan, editors, {\em Harnessing
+  Green IT : Principles and Practices}, chapter~3. John Wiley \& Sons, Hoboken,
+  NJ, USA, 2012.
+
+\end{thebibliography}

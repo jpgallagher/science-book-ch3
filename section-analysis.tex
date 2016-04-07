@@ -1,0 +1,38 @@
+
+\section{Static Analysis of Energy Consumption}\label{energy-analysis}
+
+Static analysis is the other key component of energy transparency.
+It infers information about energy consumed by programs without
+actually running them. As with energy modelling, analysis can be performed on
+program representations at different levels 
+in the software stack, ranging from source code (in different programming
+languages) through intermediate compiler representations to ISA.
+
+Static analysis of energy consumption 
+gives safe approximations, namely upper and lower bounds, on the energy
+consumed by the program, or parts of it. These approximations are often
+functions parametrised by the sizes of the input data and contextual
+features such as clock frequency and voltage. 
+
+Static energy profiling~\cite{staticprofiling-flops} shows the
+distribution of energy usage over the parts of the code. This can be
+very useful to the developer, showing which parts of the program are the
+most energy-critical. Some functions or blocks in the program are
+perhaps not particularly expensive in energy in themselves but are
+called many times. Such parts are natural targets for optimisation,
+since there a small improvement can yield important savings. 
+
+\subsection{Techniques for energy analysis}
+
+Static energy analysis is based on abstract interpretation and related techniques that
+derive safe approximations of program behaviour. Automatic complexity analysis, 
+yielding complexity functions on the running time of programs, have been adapted for
+other resources than time. 
+
+\subsection{Semantic representations for energy analysis}
+Code at various levels such as  source code, intermediate compiler representations or ISA
+are usually translated into some suitable representation which expresses
+the essential semantics of the code while being suitable for analysis.  A common representation 
+language is constrained Horn
+clauses, a subset of first order logic which is widely used in software verification.
+

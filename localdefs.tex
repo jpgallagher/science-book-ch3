@@ -1,0 +1,57 @@
+\newcommand{\level}{level\xspace}
+\newcommand{\levels}{levels\xspace}
+\newcommand{\Level}{Level\xspace}
+\newcommand{\Levels}{Levels\xspace}
+\newcommand{\hcir}{HC IR\xspace}
+\newcommand{\llvmir}{LLVM IR\xspace}
+\newcommand{\llvm}{LLVM\xspace}
+\newcommand{\ciao}{Ciao\xspace}
+\newcommand{\ciaopp}{CiaoPP\xspace}
+\newcommand{\tool}{tool\xspace}
+\newcommand{\tools}{tools\xspace}
+\newcommand{\ial}{IAL\xspace}
+\newcommand{\frontend}{front end\xspace}
+\newcommand{\Frontend}{Front end\xspace}
+\newcommand{\isa}{ISA\xspace}
+\newcommand\ciaoppCmdLine{\tt ciaopp\_entra}
+
+\newcommand{\true}{\mathsf {true}}
+\newcommand{\false}{\mathsf {false}}
+
+\def\ll{[\![}
+\def\rr{]\!]}
+
+
+
+\linespread{1.2}
+
+%%%%%%%%%%%%% Token info expansion %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\token}{true}
+%\newcommand{\token}{false}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\hastoken}[3]{
+\ifthenelse{\equal{\token}{true}}{
+\noindent\fbox{{\color{red} \textbf{Has token:}  #1 (deadline #2)}. \textbf{Token order:} #3} 
+\medskip
+}{}}
+
+
+
+\let\oldsection\section
+%\def\section{\clearpage\oldsection}
+\def\section{\cleardoublepage\oldsection}
+
+
+%
+\newcommand{\demofigpath}{\figpath}
+\newcommand{\attachpath}{attachments}
+\newcommand{\figpath}{Figs}
+%
+\newcommand{\internalcomment}[1]{
+\begin{small}
+\noindent
+{\color{red} #1} \ \\
+\end{small}
+}
+% \renewcommand{\internalcomment}[1]{}
