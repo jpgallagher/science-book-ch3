@@ -126,3 +126,11 @@ equations can be solved to yield the expression given the cost of the loop as a 
 $cost_2(n) = n*e$, and the cost of the whole 
 program (a path from 1 to 4) is $cost(n) = e_1 + n*e + e_2$, where $e_1, e_2$ are the respective
 energy costs of the transitions before and after the loop.
+
+\paragraph{More complex analyses.} The example shown is very simple, but the method generalises to
+a wide range of program structures, including conditionals, next loops and procedure calls.  
+As abstract interpretation is inherently approximate, the analysis in general gives safe upper and lower bounds on the energy
+consumed by the program. 
+A further extension of the method yields
+static energy profiling~\cite{staticprofiling-flops}, which shows the
+distribution of energy usage over the parts of the code, rather than a single function giving the total consumption of the program.
