@@ -14,7 +14,13 @@ languages) through intermediate compiler representations down to ISA level.
   \begin{subfigure}[b]{.49\linewidth}
   \centering
          \begin{lstlisting}
-    1: void f(int n) {          z = 1;    2:    while (n > 0) {             z = z*n;             n = n-1;    3:    }          print(z);	
+    1: void f(int n) {
+          z = 1;
+    2:    while (n > 0) {
+             z = z*n;
+             n = n-1;
+    3:    }
+          print(z);	
     4: }		
               \end{lstlisting}
     \caption{}
@@ -24,8 +30,15 @@ languages) through intermediate compiler representations down to ISA level.
 \begin{center}
 \[
      \begin{array}{l}
-	true \rightarrow r_1(n)\\	(r_1(n) \wedge z=1)  \rightarrow r_2(n,z)\\        (r_2(n,z)~ \wedge \\
-	n < 0 \wedge z'=z*n  \wedge n'=n-1)\\         \ \ \       \rightarrow r_3(n',z')\\        (r_3(n',z') \wedge n=n' \wedge z=z')\\        \ \ \         \rightarrow r_2(n,z)\\        (r_2(n,z) \wedge n \ge 0 \wedge print(z))\\         \ \ \      \rightarrow r_4	
+	true \rightarrow r_1(n)\\
+	(r_1(n) \wedge z=1)  \rightarrow r_2(n,z)\\
+        (r_2(n,z)~ \wedge \\
+	n < 0 \wedge z'=z*n  \wedge n'=n-1)\\
+         \ \ \       \rightarrow r_3(n',z')\\
+        (r_3(n',z') \wedge n=n' \wedge z=z')\\
+        \ \ \         \rightarrow r_2(n,z)\\
+        (r_2(n,z) \wedge n \ge 0 \wedge print(z))\\
+         \ \ \      \rightarrow r_4	
      \end{array}
 \]
     \end{center}
@@ -55,7 +68,12 @@ representation for analysis.   A common representation language is
 constrained Horn clauses (CHCs), a subset of first order logic which is
 widely used in software verification
 \cite{DBLP:conf/birthday/BjornerGMR15}. CHCs can represent code at any
-level of abstraction. A constrained Horn clause has the form $\forall x_0 \ldots x_n 
+level of abstraction. In this section we outline the key aspects of
+resource analysis using CHCs as a representation but space does not
+allow a fully detailed presentation.  More information can be found in the
+references given in the text.
+
+A constrained Horn clause has the form $\forall x_0 \ldots x_n 
 (p_1(x_1) \wedge \ldots \wedge p_n(x_N) \wedge \phi \rightarrow
 p_0(x_0))$. When representing program semantics, each predicate
 $p_0,p_1,\ldots,p_n$ typically corresponds to a program point, and its
@@ -73,7 +91,7 @@ The constrained Horn clauses (b) represent a transition
 system (c) induced by the program's semantics (the quantifiers in
 the Horn clauses are
 omitted).  The predicates
-$r_0, \ldots, r_4$ represent the program points $1,\ldots,4$ and
+$r_1, \ldots, r_4$ represent the program points $1,\ldots,4$ and
 $r_i(x_i)$ means that program point $i$  is reachable with state
 $x_i$, where $x_i$ is the tuple of variables in scope at that point.
 
@@ -85,29 +103,15 @@ Horn clauses are explained in \cite{DBLP:conf/ppdp/AngelisFPP15}.
 Furthermore techniques for representing multi-threaded
 code as Horn clauses have been developed \cite{ GrebenshchikovLPR12}.
 
-%
-%
-%Static analysis of energy consumption 
-%gives safe approximations, namely upper and lower bounds, on the energy
-%consumed by the program, or parts of it. These approximations are often
-%functions parametrised by the sizes of the input data or contextual
-%features such as clock frequency and voltage. 
-%
-%Static energy profiling~\cite{staticprofiling-flops} shows the
-%distribution of energy usage over the parts of the code. This can be
-%very useful to the developer, showing which parts of the program are the
-%most energy-critical. Some functions or blocks in the program are
-%perhaps not particularly expensive in energy in themselves but are
-%called many times. Such parts are natural targets for optimisation,
-%since there a small improvement can yield important savings. 
 
 \subsection{Techniques for energy analysis}
 
 Given such a representation of a program, techniques based on abstract interpretation \cite{Cousot1977}
 can derive safe approximations of program behaviour. A branch of abstract interpretation 
 focusses on automatic complexity analysis, yielding complexity functions on the
-execution time of the program.  These techniques extend straightforwardly to analysis of energy and
-other resources. The essence of the technique is to extract constraints from the Horn clauses
+execution time of the program.  These techniques have been widely applied to
+analysis of Horn clauses, and have been extended to analysis of energy and
+other resources \cite{resource-iclp07,jvm-cost-esop}. The essence of the technique is to extract constraints from the Horn clauses
 representing the energy consumed. These constraints are then solved, or approximated, to yield explicit 
 formulas giving the consumption.
 
@@ -121,7 +125,8 @@ Once this is done, constraints
 representing the energy consumption of the program are extracted from the Horn clause 
 representation. In the case of the loop at point 2, a recursive equation is obtained, e.g.
 \[ cost_2(n) = e + cost_2(n-1)~ (\mathrm{if}~n > 0), ~~cost_2(n) = 0 ~ (\mathrm{if}~n \le 0) \]
-where $e$ is the energy cost of one iteration of the loop, obtained from the energy model. These
+where $e$ is the energy cost of one iteration of the loop, obtained from the energy model. A dependency analysis
+also determines that the variable $n$ is the relevant input parameter in this case. These
 equations can be solved to yield the expression giving the cost of the loop as a function of $n$, 
 namely $cost_2(n) = n*e$, and the cost of the whole 
 program (a path from 1 to 4) is $cost(n) = e_1 + n*e + e_2$, where $e_1, e_2$ are the respective
