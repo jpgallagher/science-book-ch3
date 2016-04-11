@@ -18,16 +18,17 @@
 \input localdefs
 
 \setcounter{chapter}{2}
-\setcounter{secnumdepth}{4}
+\setcounter{secnumdepth}{3}
 
 \begin{document}
 
 \chapter{Energy-Aware Software Engineering}
 
-Energy-aware software engineering concerns the use of tools and methods to allow energy consumption to be a first-class software design goal. A design goal could be, for instance, to meet stated energy targets such as battery lifetime or power-supply constraints for a given ICT application running on a given hardware platform, or simply to optimise energy efficiency. Very few programmers at present have much idea of how much energy their programs consume, or which parts of a program use the most energy. Therefore energy-related design goals are usually not considered until the programs are deployed; at that point, if energy goals are not reached, it may be too late or expensive to do anything about it. \todo{KIE: result in very long re-development cycles}
+Energy-aware software engineering concerns the use of tools and methods to allow energy consumption to be a first-class software design goal. A design goal could be, for instance, to meet stated energy targets such as battery lifetime or power-supply constraints for a given ICT application running on a given hardware platform, or simply to optimise energy efficiency. Very few programmers at present have much idea of how much energy their programs consume, or which parts of a program use the most energy. Therefore energy-related design goals are usually not considered until the programs are deployed; at that point, if energy goals are not reached, it may result in very long expensive re-development cycles.
 
 
-Although energy is ultimately consumed by physical processes in the hardware, the software controls the hardware and indeed typically causes a great deal of energy waste by inefficient use of the hardware. This waste cannot be recovered by relying on the development of more energy-efficient hardware -- increasing the energy efficiency of the software is the most effective approach to reducing overall energy consumption. \todo{KIE: point out the need to optimize E across the entire system stack - potentially, quote Steve Furber} Energy-awareness for software development thus requires an understanding of the implications for energy consumption of design decisions in the software. In short, there is a need for \emph{energy transparency}: the ability of the software developer to ``see" the program's energy consumption, without actually executing and measuring it.\todo{or, like in EACOF, to just measure it} \todo{... ideally without...?}
+Although energy is ultimately consumed by physical processes in the hardware, the software controls the hardware and indeed typically causes a great deal of energy waste by inefficient use of the hardware. This waste cannot be recovered by relying on the development of more energy-efficient hardware -- increasing the energy efficiency of the software is an essential part of reducing overall energy consumption \cite{Furber2016}.  
+ Energy-awareness for software development thus requires an understanding of the implications for energy consumption of design decisions in the software. In short, there is a need for \emph{energy transparency}: the ability of the software developer to ``see" the program's energy consumption, ideally without actually executing and measuring it.\todo{or, like in EACOF, to just measure it} \todo{J: what is EACOF?}
 
 \paragraph{Chapter outline.}  Section \ref{greenit} presents the background and motivation for energy-aware software engineering. Then  the main scientific and technical foundations that support energy transparency are summarised.  These are \emph{energy modelling} and \emph{static energy analysis}. Energy modelling (Section \ref{sec:energy-models}) concerns building models of software energy consumption at different levels of abstraction, attributing energy consumption at the hardware level to software constructs such as operations, instructions, statements, functions and
 procedures.   Energy analysis (Section \ref{sec:energy-analysis}) concerns the estimation, using an energy model, of the energy that would be consumed when running a piece of software, without actually executing it.  This estimate can be parameterised by the input data for the software, or other contextual information. 
@@ -48,18 +49,20 @@ Green IT covers energy aspects of the complete life-cycle and context of ICT sys
 
 
 
-Energy-aware software development is therefore only one aspect of Green IT;  it is only concerned with the energy efficiency of software, that is, the energy costs \emph{directly attributable to execution of programs}.\todo{... directly attributable to how programs use the hardware during execution} The energy-aware software engineer cannot in general be aware of the whole Green IT field, which involves complex dependencies and tradeoffs. \todo{and goes well beyond software engineering}
+Energy-aware software development is therefore only one aspect of Green IT;  it is only concerned with the energy efficiency of software, that is, the energy costs directly attributable to how programs use the hardware during execution. The energy-aware software engineer cannot in general be aware of the whole Green IT field, which involves complex dependencies and tradeoffs and goes well beyond software engineering.
 
 
 
 \paragraph{Environmental motivation.}
 The energy consumed by ICT is growing both in absolute terms and as a proportion of the global energy consumption and thus plays an important role in meeting the targets of the Europe 2020 Agenda, which includes a goal to reduce greenhouse gas emissions by at least 20\% compared to 1990 levels.   Every device, from autonomous sensor systems operating at the mW level to high performance computing (HPC) systems and data centres requiring tens of MWs for operation, consumes a certain amount of energy which results in the emission of CO$_2$. 
 
-As already pointed out, energy is consumed by hardware, but the software often causes a great deal of energy waste by inefficient use of the hardware.  Increasing the energy efficiency of the software is at least as effective as development of more energy-efficient hardware.\todo{quote Steve Furber here and the need to consider the entire system stack from hw to sw}
+As already pointed out, energy is consumed by hardware, but the software often causes a great deal of energy waste by inefficient use of the hardware.  Increasing the energy efficiency of the software is at least as effective as development of more energy-efficient hardware.
+Furber \cite{Furber2016} remarks 
+that ``if you want an ultimate low-power system, then you have to worry aboutenergy usage at every level in the system design."
 Furthermore, in many cases the energy efficiency of software has a direct positive effect on the efficiency of other energy-related aspects of systems.  Obvious cases are cooling costs and battery costs -- cooling requirements for data centres are directly related to the power dissipated by the computations, while for mobile systems the number of battery replacements or recharges is similarly reduced if software is more energy-efficient.  
 
 \paragraph{Strategic motivation.} 
-The energy efficiency of ICT systems plays a critical role in exploiting the massive amounts of information available in data centres, and the full vision of the so-called Internet of Things.  The power requirement of a data centre is typically measured in tens of MW, including cooling costs, while the Internet of Things generates increasing demand for a huge number of very low-power devices. The dream of ``wireless sensors everywhere" is accompanied by the nightmare of battery replacement and disposal unless the energy requirements of software running on devices can be lowered to enable them to be powered by energy harvesters or RF power sources.\todo{should we mention the initiatives by the EC and local governments as well as the US (PERFECT)?}
+The energy efficiency of ICT systems plays a critical role in exploiting the massive amounts of information available in data centres, and the full vision of the so-called Internet of Things.  The power requirement of a data centre is typically measured in tens of MW, including cooling costs, while the Internet of Things generates increasing demand for a huge number of very low-power devices. The dream of ``wireless sensors everywhere" is accompanied by the nightmare of battery replacement and disposal unless the energy requirements of software running on devices can be lowered to enable them to be powered by energy harvesters or RF power sources.\todo{should we mention the initiatives by the EC and local governments as well as the US (PERFECT)?} \todo{J: feel free to mention these}
 
 \paragraph{Development costs of energy-efficient software.} In the current state of the art, development costs for energy-efficient systems are higher than for energy-wasteful systems due to the extra effort required to take energy consumption into account. This is a significant barrier to making energy efficiency a first-class design goal.
 
@@ -108,6 +111,8 @@ Secondly, there can be energy savings if one or more cores can be run more slowl
 Energy can be saved by minimising data movement. This can be achieved by writing software that reduces data movement by using appropriate data structures, by understanding and exploiting the underlying system's memory hierarchy and by designing multithreaded code that reduces the cost of communication among threads.  
 
 For example the size of blocks read and written to memory and external storage can have a major impact on energy efficiency, while memory layout of compound data structures should match the intended usage in the algorithm, so that consecutively referenced data items are stored adjacently if possible.  In multithreaded code, consolidating all read-writes to or from disk to a single thread can reduce disk contention and consequent disk-head thrashing \cite{Steigerwald_Agrawal_2011}.  Furthermore, knowledge of the relative communication distances for inter-core communication can be used to place frequently communicating threads close to each other \cite{KerrisonSwallow15} thus reducing communication energy costs.
+
+Synchronisation mechanisms can also have a serious impact on energy consumption. Waiting for events using polling loops is a notorious example as pointed out by Furber (``a polling loop [is] just burning power to do nothing") \cite{Furber2016}.
 
 
 
@@ -304,10 +309,32 @@ Pragmas in the code are verified using comparison of the energy consumption pred
 
 \end{itemize}
 
+\begin{figure*}
+	\centering
+	\begin{subfigure}[b]{0.49\textwidth}
+		\centering            
+		\includegraphics[width = \textwidth]{Figs/blocks_in_program.pdf}
+		\caption{ Block costs ``In Application" and in ``3000-Times-Execution".}
+		\label{fig:blocks_in_program}
+	\end{subfigure}
+	%add desired spacing between images, e. g. ~, \quad, \qquad etc.
+	%(or a blank line to force the subfigure onto a new line)
+	\begin{subfigure}[b]{0.49\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{Figs/op_in_block.pdf}
+		\caption{Energy proportions of different kinds of operations in blocks.}
+		\label{fig:op_in_block}
+	\end{subfigure}
+	\caption{Energy distribution over basic blocks in an Android application. Blocks are sorted by the order of their contribution to run-time energy costs. The green bars indicate the relative costs of the blocks.}\label{fig:block}
+\end{figure*}
 
 \subsubsection{Android app development}\label{android-scenario}
 
-A case study on Android app energy optimisation was carried out \cite{LiGallagher-TSE-2016}.  The study involved  energy modelling and optimisation of applications based on an established game-engine.  An energy specification was not given; the aim of the study was to use a source-code-level energy model to identify the most energy-intensive parts of the code in a number of typical use-cases, and then apply manual optimisations, reducing energy usage directly and thus prolonging battery life.
+A case study on Android app energy optimisation was carried out \cite{LiGallagher-TSE-2016}.  
+The study involved  energy modelling and optimisation of applications based on an established game-engine.  
+An energy specification was not given; the aim of the study was to use a source-code-level energy model to 
+identify the most energy-intensive parts of the code in a number of typical use-cases, 
+and then apply manual optimisations, reducing energy usage directly and thus prolonging battery life.
 
 Energy-aware software engineering activities included:
 \begin{itemize}
@@ -320,12 +347,23 @@ the underlying game engine.
 \item
 
 Dynamic profiling of the code, which provided an energy profile that
-allowed the most energy-expensive basic blocks to be identified.
+allowed the most energy-expensive basic blocks to be identified. For example, Figure \ref{fig:block} 
+from \cite{LiGallagher-TSE-2016} shows an example of how the relative energy cost of
+basic source code blocks enables the programmer to focus optimisation effort on the most energy-consuming
+blocks.
+
 
 \item Manual refactoring of the source code, targeted at the most
   expensive blocks, which succeeded in increasing energy efficient by
   a factor of 6\% to 50\% in various use-case scenarios.
 \end{itemize}
+
+
+\section*{Acknowledgements}
+
+This chapter is largely based on work done in the EU 7th Framework project ENTRA: Whole-Systems ENergy TRAnsparency (318337).
+Thanks are due to all the participants in the project, especially Pedro L\'{o}pez Garc\'{i}a, Henk Muller, Steve Kerrison and Xueliang Li 
+for material incorporated in the chapter.
 
 \bibliographystyle{alpha}
 \bibliography{../../../ENTRA/entra-svn/bibtex/entra}
