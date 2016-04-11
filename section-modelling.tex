@@ -1,7 +1,16 @@
 \nopagebreak
 \section{Energy Modelling}\label{sec:energy-models}
 
-Energy models for software energy analysis can rely on information at several possible abstraction levels from hardware descriptions up to source code. There are various tradeoffs in the accuracy of the energy model itself and the ease with which it can be mapped onto the software whose energy is being analysed.
+An energy model provides information on the energy consumed when running a program on a given hardware platform, based on parameters that characterise the program and its execution. The energy model contains measured energy consumption costs for these parameters and links these costs with program specific values for the parameters to arrive at an overall energy consumption estimation. 
+
+Models that support software energy analysis typically associate program constructs, such as source code blocks, basic blocks in the intermediate representation of the program used during compilation or machine code instructions, with energy consumption costs. In addition, other costs arising from the execution of a program may need to be considered, depending on the micro architectural features of the hardware; examples are costs associated with the memory hierarchy, such as the cost of a cache hit and miss or the cost of accessing on-chip and off-chip memory, and also costs associated with the processor pipeline, such as the cost of pipeline stalls. In addition, the cost of the processor being idle and the cost of processing multiple threads concurrently may also need to be considered. 
+%
+In general, to instantiate an energy model, model parameters can be obtained either from analyzing execution or simulation traces, e.g.\ counting instructions, cache hits and misses, etc, or through static analysis as will be discussed next, in Section~\ref{sec:energy-analysis}.
+
+
+The challenge in energy modelling for software energy analysis is in finding a good compromise between the accuracy of the model and the ease with which the information can be mapped onto software constructs. Regarding the former, model accuracy tends to be higher for models at the lower-levels of abstraction, i.e.\ instruction-level energy models are typically more accurate than energy models at the intermediate representation of the compiler, and source code energy models are least accurate in comparison. However, understanding which source code lines or blocks consume most energy is much more useful to software developers looking to optimise their code for energy efficiency, than knowing the energy consumed by the sequence of machine instructions issued by the compiler. The higher the level of abstraction at which the information is presented to the software developer, the easier it is for them to comprehend the impact of algorithms and coding on the energy consumed during program execution.
+
+
 
 \subsection{Defining and constructing an energy model at ISA level}
 
