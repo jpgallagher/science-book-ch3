@@ -7,29 +7,106 @@ Models that support software energy analysis typically associate program constru
 %
 In general, to instantiate an energy model, model parameters can be obtained either from analyzing execution or simulation traces, e.g.\ counting instructions, cache hits and misses, etc, or through static analysis as will be discussed next, in Section~\ref{sec:energy-analysis}.
 
-
-The challenge in energy modelling for software energy analysis is in finding a good compromise between the accuracy of the model and the ease with which the information can be mapped onto software constructs. Regarding the former, model accuracy tends to be higher for models at the lower-levels of abstraction, i.e.\ instruction-level energy models are typically more accurate than energy models at the intermediate representation of the compiler, and source code energy models are least accurate in comparison. However, understanding which source code lines or blocks consume most energy is much more useful to software developers looking to optimise their code for energy efficiency, than knowing the energy consumed by the sequence of machine instructions issued by the compiler. The higher the level of abstraction at which the information is presented to the software developer, the easier it is for them to comprehend the impact of algorithms and coding on the energy consumed during program execution.
+The challenge in energy modelling for software energy analysis is in finding a good compromise between the accuracy of the model and the ease with which the information can be mapped onto software constructs. Regarding the former, model accuracy tends to be higher for models at the lower-levels of abstraction, i.e.\ instruction-level energy models are typically more accurate than energy models at the intermediate representation of the compiler, and source code energy models are less accurate in comparison. 
+%
+However, understanding which source code lines or blocks consume most energy is much more useful to software developers looking to optimise their code for energy efficiency, than knowing the energy consumed by the sequence of machine instructions issued by the compiler. The higher the level of abstraction at which the information is presented to the software developer, the easier it is for them to comprehend the impact of algorithms and coding on the energy consumed during program execution. Yet, taking measurements to characterize energy models is simplest and most accurate when performed at the lower levels of abstraction, where energy costs of low-level software constructs such as machine instructions can be determined directly.
 
 
 
 \subsection{Defining and constructing an energy model at ISA level}
 
-The Instruction Set Architecture (ISA) is a practical level of abstraction for modelling, because it expresses
-underlying hardware operations and their relationship with the intent of the
-software. Constructing a model at this level gives us the following benefits:
-energy costs can be assigned at the instruction level; the same level
-    as is output by the compiler;
- there are strong correlations between instruction properties and energy
-    consumption, for example the number of operands used in the instruction;
-and machine instructions can be related back to the original programming
-    statements written by the software developer, as well as to various
-    intermediate representations.
+The Instruction Set Architecture (ISA) is a practical level of abstraction for energy
+modelling, because it directly correlates underlying hardware operations associated with instruction execution to low-level software constructs. The ISA is the interface between hardware and software. It defines the hardware architecture and its behaviour in terms of low-level programming constructs such as supported data types, machine instructions, registers, the memory architecture, any interrupt and exception handling as well as I/O operations. 
 
-The construction of an energy model at the ISA level has to address several challenges.
- Instruction costs must be captured through a profiling suite and
-    measurement of device power. However, not all instructions can be directly profiled, requiring indirect or
-    statistical approaches to their characterisation.
-In addition, other properties such as the cost of running multiple threads and the cost of idle periods must be determined for multi-threaded architectures.
+Constructing a model at this level gives us the following benefits: energy
+costs can be assigned at the instruction level; the same level as is output by
+the compiler; there are strong correlations between instruction properties and
+energy consumption, for example the number of operands used in the instruction;
+and machine instructions can be related back to the original programming
+statements written by the software developer, as well as to various
+intermediate representations. 
+
+Energy modelling at ISA level dates back to 1994 when Tiwari et
+al.~\cite{Tiwari-embedded-1994} first proposed a
+generic method to develop instruction-level power models for arbitrary
+processor architectures to estimate the power consumption caused by software.
+Such models could overcome the limitations of hardware design power analysis
+methods; they require access to circuit or gate level design information
+including layout and tend to be impractically slow at producing results for
+system-level power analysis. Instruction-level power models, instead, are
+orders of magnitude faster at estimating the power consumption of embedded
+software and can achieve accuracy within 10\% of what hardware design power
+analysis methods deliver. This is a worthwhile tradeoff because software
+development involves numerous iterations during the coding phase, and rapid
+feedback of resource usage is critical for software developers to make energy
+aware decisions.
+
+The original instruction-level power model by Tiwari et al.\ as given in~\cite{TiwariWolfeInstructionLevelPowerAnalysi:1996} is summarized in Equation~\ref{e:tiwari}.
+
+\begin{equation}\label{e:tiwari}
+E_P = \sum_i (B_i \times N_i) + \sum_{i,j} (O_{i,j} \times N_{i,j}) + \sum_k E_k
+\end{equation}
+
+According to~\ref{e:tiwari}, the energy consumption of a program, $E_P$, is calculated as the sum of three components: the base cost per instruction, the cost of switching between subsequent instructions, also called the inter-instruction overhead or the circuit state overhead, and external effects within the architecture.
+%
+The first term in the sum in~\ref{e:tiwari} is the base cost, where $B_i$ is the base cost of instruction $i$ multiplied with the number of times $i$ occurs in $P$, $N_i$.
+%
+The second term is the inter-instruction overhead; $O_{i,j}$ represents the cost incurred by switching the circuit state of the processor from executing instruction $i$ to executing instruction $j$ and is multiplied by the number of times instruction $i$ is followed by instruction $j$ in $P$. This inter-instruction overhead represents the energy consumed due to switching on busses, e.g.\ as a consequence of changing op-codes and operand values, and using different functional units within the processor. 
+%
+Finally, the third term in the sum accounts for the cost of $k$ external effects that may impact on software related energy consumption, e.g.\ cache misses or pipeline stalls that can be characterized using external cache models or models of the micro architecture of the processor. 
+
+Recently, instruction-level energy models in the spirit of the original model by Tiwari et al.\ have been developed for modern processors such as the Intel Xeon Phi, a many integrated core architecture for high-performance computing, and the hardware multi-threaded XMOS XCore embedded microprocessor.\todo{add references to both architectures}
+
+The XMOS XCore instruction-level energy
+model~\cite{DBLP:journals/tecs/KerrisonE15} re-defines the notion of base cost
+to be the power dissipated while the processor is idle. It uses individual
+instruction costs, scaled by the level of concurrency in the processor's
+pipeline and a constant overhead to account for inter-instruction switching.
+%
+Model characterization was performed using a measurement setup and instruction
+loops similar to those originally proposed in~\cite{Tiwari-embedded-1994}. The
+individual instruction costs represent averages over measurements obtained from
+running loops with instructions using operands that were generated
+pseudo-randomly, constraining values to those valid for the respective
+instruction.
+%
+Evaluation of this multi-threaded instruction-level model showed average error
+margins of less than 7\% when used with instruction stream simulation to
+instantiate the model parameters.
+%
+However, the model was designed to be used for static energy consumption analysis,
+requiring static analysis techniques to determine the number of idle cycles and
+the level of concurrent thread activity, in addition to the standard
+instruction stream statistics.
+% 
+In contrast, the Xeon Phi instruction-level energy model~\cite{phimodel} relies
+on performance counter statistics and is designed to be used with software
+profiling tools to support energy efficient software development, rather than
+static analysis. This model achieves an average error rate of less than 5\%.
+
+
+
+
+The construction of an energy model at the ISA level has to address several
+challenges.
+%
+Measurements need to be taken to determine both the base cost for each
+instruction and also the switching cost between instructions. To achieve this,
+instructions are placed into infinite loops, e.g.\ loops of a single
+instruction to obtain that instruction's base costs. The average power is
+measured while the loop is executed. Care needs to be taken to ensure the loop
+runs for a sufficiently long time to minimize measurement errors due to loop
+overheads. 
+%
+To reduce the measurement effort, rather than determining a base cost for each instruction and individual instruction pairs, it may be sufficient to identify instruction types and determine base costs and switching costs with respect to these. 
+%
+However, not all instructions or instruction types can be directly profiled,
+requiring indirect or statistical approaches to their characterisation. 
+%
+In addition, other properties such as the cost of running multiple threads and
+the cost of idle periods must be determined for multi-threaded architectures, and communication costs must be considered for interacting multi-threaded programs running on multi-core platforms. 
+
+\todo[inline]{lead over to linking energy consumption directly to higher levels - intuitive for software developers at the cost of accuracy of the predictions }
 
 \subsection{Energy modelling at higher levels of software abstraction}
 \label{subsec:mapping}
@@ -64,3 +141,24 @@ nevertheless such an approach may be the only feasible one in cases where the so
 stack has many complex layers. 
 
 
+\subsection{The impact of data on energy consumption of software}
+
+- include the AND graph to illustrate different energy for different operands
+
+- refer back to Tiwari 1994 where it was noted that measurements differed from predictions due to the fact that the actual operands of instructions are only known at runtime, so averages must be used for model characterization
+
+- quote WCEC papers on data impact observed in practice
+
+- quote our work on WCEM and WCEM-theory
+
+- single-value energy models: WC vs average
+
+- need for tight but safe bounds
+
+- statistic approaches need to be developed?
+
+\subsection{Summary}
+
+- pros and cons of energy modelling
+
+- important characteristics of an energy model to support EE SWE
