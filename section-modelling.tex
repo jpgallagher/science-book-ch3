@@ -55,13 +55,14 @@ The second term is the inter-instruction overhead; $O_{i,j}$ represents the cost
 %
 Finally, the third term in the sum accounts for the cost of $k$ external effects that may impact on software related energy consumption, e.g.\ cache misses or pipeline stalls that can be characterized using external cache models or models of the micro architecture of the processor. 
 
-Recently, instruction-level energy models in the spirit of the original model by Tiwari et al.\ have been developed for modern processors such as the Intel Xeon Phi, a many integrated core architecture for high-performance computing, and the hardware multi-threaded XMOS XCore embedded microprocessor.\todo{add references to both architectures}
+Recently, instruction-level energy models have been developed for modern processors such as the Intel Xeon Phi, a many integrated core architecture for high-performance computing, and the hardware multi-threaded XMOS XCore embedded microprocessor.\todo{add references to both architectures}
 
 The XMOS XCore instruction-level energy
-model~\cite{DBLP:journals/tecs/KerrisonE15} re-defines the notion of base cost
-to be the power dissipated while the processor is idle. It uses individual
-instruction costs, scaled by the level of concurrency in the processor's
-pipeline and a constant overhead to account for inter-instruction switching.
+model~\cite{DBLP:journals/tecs/KerrisonE15} is based on the original model by
+Tiwari et al. However, it re-defines the notion of base cost to be the power dissipated
+while the processor is idle, and  uses individual instruction costs, scaled by
+the level of concurrency in the processor's pipeline as well as a constant overhead to
+account for circuit state switching between instructions.
 %
 Model characterization was performed using a measurement setup and instruction
 loops similar to those originally proposed in~\cite{Tiwari-embedded-1994}. The
@@ -78,11 +79,19 @@ However, the model was designed to be used for static energy consumption analysi
 requiring static analysis techniques to determine the number of idle cycles and
 the level of concurrent thread activity, in addition to the standard
 instruction stream statistics.
-% 
+
 In contrast, the Xeon Phi instruction-level energy model~\cite{phimodel} relies
-on performance counter statistics and is designed to be used with software
-profiling tools to support energy efficient software development, rather than
-static analysis. This model achieves an average error rate of less than 5\%.
+on performance counter statistics that are obtained at runtime, rather than
+through static analysis at compile time. This model is designed to be used with
+software profiling tools to support energy efficient software development. The
+model is built by characterising the Energy per Instruction (EPI) of selected
+instruction types using microbenchmarks executed on different processor
+configurations in terms of numbers of cores and threads per core. Instructions are classified in terms of op-code and operand locations, both of which influence the EPI.
+%
+The energy consumption of a given workload can then be determined by
+multiplying the runtime instruction statistics with the respective EPIs.
+%
+This model achieves an average error rate of less than 5\%.
 
 
 
@@ -162,3 +171,7 @@ stack has many complex layers.
 - pros and cons of energy modelling
 
 - important characteristics of an energy model to support EE SWE
+
+- need for timing and energy predictability
+
+R.Wilhelm: Timing predictability of a hw/sw system is the degree to which bounds can be determined with acceptable precision, with acceptable effort and with acceptable loss of (average-case) performance. 
