@@ -47,7 +47,7 @@ The model in~\cite{Tiwari-embedded-1994} captures the energy consumption
 directly associated with processing each instruction, obtained by measuring the
 average current drawn while executing a dedicated loop that only contains
 independent instances of the respective instruction to be profiled, multiplied
-by the supply voltage $V_{CC}}$, and further multiplied by the number and
+by the supply voltage $V_{CC}$, and further multiplied by the number and
 duration of the clock cycles required to execute the instruction.
 %
 Variations in instruction base costs can be observed during measurements and
@@ -61,7 +61,7 @@ the energy model associates a single base cost with each instruction,
 representing averaged values. This is a very important feature of a single
 instruction cost Tiwari-style energy model as it has implications on the safety
 of the bounds inferred by worst case static analysis techniques. This will be
-discussed further in Section~\ref{s:wcem}.
+discussed further in Section~\ref{subsec:data}.
 
 Instruction base costs intentionally do not include any extra costs arising
 from executing an instruction within the context of other instructions, i.e.\
@@ -119,6 +119,8 @@ effects that may impact on software related energy consumption, e.g.\ cache
 misses or pipeline stalls that can be characterized using external cache models
 or models of the micro architecture of the processor.
 
+\todo[inline]{Maybe include Steinke / Sarta model that have far more detail - neither is useful for static analysis though.}
+
 Recently, instruction-level energy models have been developed for modern
 processors such as the Intel Xeon Phi, a many integrated core architecture for
 high-performance computing, and the hardware multi-threaded XMOS XCore embedded
@@ -153,7 +155,9 @@ through static analysis at compile time. This model is designed to be used with
 software profiling tools to support energy efficient software development. The
 model is built by characterising the Energy per Instruction (EPI) of selected
 instruction types using microbenchmarks executed on different processor
-configurations in terms of numbers of cores and threads per core. Instructions are classified in terms of op-code and operand locations, both of which influence the EPI.
+configurations in terms of numbers of cores and threads per core. Instructions
+are classified in terms of op-code and operand locations, both of which
+influence the EPI.
 %
 The energy consumption of a given workload can then be determined by
 multiplying the runtime instruction statistics with the respective EPIs.
@@ -209,40 +213,66 @@ them from the program.
 Instruction-level energy models are practical due to the close, almost direct
 link of measurements to programming constructs within the ISA. Energy models at
 higher levels of abstraction, however, provide more intuitive feedback to
-software and tool developers all be it at the cost of accuracy of the
+software and tool developers, all be it at the cost of accuracy of the
 predictions.
 
 Modelling at the level of the Intermediate Representation (IR) used by
 compilers can be a useful compromise between the accuracy of a lower-level
-(ISA) model and the to high-level source code. Since the compiler is a natural
+(ISA) model and the high-level source code. Since the compiler is a natural
 place for optimisations, modelling and predicting the energy consumption at IR
 level could therefore enable energy specific optimisations.
 
-Using a mapping technique, 
-the energy model at the ISA level can be lifted to the LLVM IR level, allowing energy
-consumption estimation of programs at that level. 
-The mapping technique determines the energy characteristics of LLVM IR
-instructions. It provides on-the-fly energy characterization that takes into
-consideration the context of instructions since there is no program-independent mapping between
-ISA instructions and LLVM instructions.
+IR-level energy models have been built using two distinct techniques. One
+is based on statistical methods, the other on mapping a lower-level model,
+i.e.\ one at ISA level, up to the IR level; both have been developed for LLVM
+IR~\cite{LattnerLLVM2004} in the context of the LLVM toolchain~\cite{LLVM}.
+%
+In~\cite{Brandolese2011} statistical analysis has been employed to build an
+energy model for LLVM IR for the purpose of fast and accurate early-stage
+prediction of the energy consumption of embedded software at the function level
+to enable compile-time energy optimisation.
+%
+Modelling starts with instrumenting and compiling the source code of a large
+set of benchmarks into architecture-independent LLVM IR to extract block-level
+statistical information of the structural features of the source code.
+Profiling of the LLVM IR basic blocks is then performed on a host computer to
+capture their dynamic behaviour. The final step then factors in the timing and
+energy consumption of the target architecture. Using native compilation,
+back-annotation techniques and statistical analysis, the target machine
+specific costs are associated with the architecture-independent LLVM IR. This
+requires a cost model of the instruction set for the respective target machine,
+which is assumed to be provided by the manufacturer. The resulting model can be
+used to estimate the energy consumption of code for the target hardware, based
+solely on its target-independent LLVM IR.
+
+A direct mapping technique that lifts an energy model at ISA level to LLVM IR
+level is described in~\cite{Georgiou15}. The energy characteristics of LLVM IR
+instructions are determined from the costs of the associated machine
+instructions based on a mapping that tracks which LLVM IR instructions created
+which machine instructions during the lowering phase of compilation, i.e.\
+after optimisation passes.
+%
+The approach provides on-the-fly energy characterization that takes into
+consideration the context of instructions since there is no program-independent
+mapping between ISA instructions and LLVM instructions.
+%
+The technique has been used for static energy consumption analysis at the LLVM IR
+level in~\cite{isa-vs-llvm-fopara} and also in~\cite{grech15}. 
 
 In principle, the same mapping technique may be used to map the energy consumption
-of programs to even higher levels, such as the source code. 
-
-
+of programs to even higher levels, such as the source code blocks. 
+%
 An alternative approach to building a source-level energy model is to identify
-basic energy-consuming operations from the source code and
-correlate them to energy costs by measuring energy consumption in
-a large number of test cases and analyzing the results using techniques
-based on regression analysis. The resulting energy model of the basic
-operations implicitly includes the effect of all the layers of the software
-stack down to the hardware, including compiled code, virtual machine and operating
-system layers. The approach is inherently approximate;
-nevertheless such an approach may be the only feasible one in cases where the software
-stack has many complex layers. 
+basic energy-consuming operations from the source code and correlate them to
+energy costs by measuring energy consumption in a large number of test cases
+and analyzing the results using techniques based on regression analysis. The
+resulting energy model of the basic operations implicitly includes the effect
+of all the layers of the software stack down to the hardware, including
+compiled code, virtual machine and operating system layers. The approach is
+inherently approximate; nevertheless such an approach may be the only feasible
+one in cases where the software stack has many complex layers.
 
-
-\subsection{The impact of data on energy consumption of software}
+\subsection{The impact of data on energy consumption of software}\label{subsec:data}
 
 \begin{figure}
     \centering
