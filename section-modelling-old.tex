@@ -1,25 +1,11 @@
 \nopagebreak
 \section{Energy Modelling}\label{sec:energy-models}
 
-%An energy model provides information on the energy consumed when running a program on a given hardware platform, based on parameters that characterise the program and its execution. The energy model contains measured energy consumption costs for these parameters and links these costs to program specific values for the parameters to arrive at an overall energy consumption estimation. 
+An energy model provides information on the energy consumed when running a program on a given hardware platform, based on parameters that characterise the program and its execution. The energy model contains measured energy consumption costs for these parameters and links these costs to program specific values for the parameters to arrive at an overall energy consumption estimation. 
 
-An energy model supporting 
-%Models that support 
-software energy analysis 
-%typically 
-associates energy 
-consumption costs
-with 
-basic
-program constructs such as source code blocks, basic blocks in the intermediate representation 
-%of the program 
-used during compilation or machine code instructions.
-%, with energy consumption costs. 
-In addition, other costs arising from the execution of a program may need to be considered, depending on the micro architectural features of the hardware; examples are costs associated with the memory hierarchy, such as the cost of a cache hit and miss or the cost of accessing on-chip and off-chip memory, and also costs associated with the processor pipeline, such as the cost of pipeline stalls. In addition, the cost of the processor being idle and the cost of processing multiple threads concurrently may also need to be considered. 
-
-An energy model, as understood in this chapter, is program-independent.  It captures the energy costs of basic software constructs in a given language executed on a given hardware platform. The model is used during program analysis (Section \ref{sec:energy-analysis}) to obtain information about the energy consumption of a given program.
+Models that support software energy analysis typically associate program constructs, such as source code blocks, basic blocks in the intermediate representation of the program used during compilation or machine code instructions, with energy consumption costs. In addition, other costs arising from the execution of a program may need to be considered, depending on the micro architectural features of the hardware; examples are costs associated with the memory hierarchy, such as the cost of a cache hit and miss or the cost of accessing on-chip and off-chip memory, and also costs associated with the processor pipeline, such as the cost of pipeline stalls. In addition, the cost of the processor being idle and the cost of processing multiple threads concurrently may also need to be considered. 
 %
-%In general, to instantiate an energy model, model parameters can be obtained either from analysing execution or simulation traces, e.g.\ counting instructions, cache hits and misses, etc, or through static analysis as will be discussed next, in Section~\ref{sec:energy-analysis}.
+In general, to instantiate an energy model, model parameters can be obtained either from analysing execution or simulation traces, e.g.\ counting instructions, cache hits and misses, etc, or through static analysis as will be discussed next, in Section~\ref{sec:energy-analysis}.
 
 The challenge in energy modelling for software energy analysis is in finding a good compromise between the accuracy of the model and the ease with which the information can be mapped onto software constructs. Regarding the former, model accuracy tends to be higher for models at the lower-levels of abstraction, i.e.\ instruction-level energy models are typically more accurate than energy models at the intermediate representation of the compiler, and source code energy models are less accurate in comparison. 
 %
@@ -44,8 +30,7 @@ constructs.
 
 Energy modelling at ISA level dates back to 1994 when Tiwari et
 al.~\cite{Tiwari-embedded-1994} first proposed a
-%generic 
-method to develop instruction-level power models for arbitrary
+generic method to develop instruction-level power models for arbitrary
 processor architectures to estimate the power consumption caused by software.
 %
 Such models could overcome the limitations of hardware design power analysis
@@ -115,20 +100,17 @@ processing, speculative execution etc, can make it very difficult to achieve
 acceptable levels of accuracy when modelling at the instruction level.
 
 In~\cite{TiwariWolfeInstructionLevelPowerAnalysi:1996} this energy model is
-used to derive the energy consumption of a program $Prog$ by 
- by Equation~\ref{e:tiwari}.
+given by Equation~\ref{e:tiwari}.
 %
 \begin{equation}\label{e:tiwari}
 E_{Prog} = \sum_i (B_i \times N_i) + \sum_{i,j} (O_{i,j} \times N_{i,j}) + \sum_k E_k
 \end{equation}
 
-According to Equation~\ref{e:tiwari}, the energy consumption of $Prog$, namely $E_{Prog}$, is
-calculated as the sum of three components: the base cost
-of instruction
-execution, the
+According to~\ref{e:tiwari}, the energy consumption of a program, $E_{Prog}$, is
+calculated as the sum of three components: the base cost per instruction, the
 circuit state overhead, and other inter instruction effects.
 %
-The first term in the sum in Equation~\ref{e:tiwari} represents the base cost, where $B_i$ is
+The first term in the sum in~\ref{e:tiwari} represents the base cost, where $B_i$ is
 the base cost of instruction $i$ multiplied with the number of times $i$ occurs
 in program $\mathit{Prog}$, $N_i$.
 %
@@ -141,13 +123,6 @@ Finally, the third term in the sum accounts for the cost of $k$ inter-instructio
 effects that may impact on software related energy consumption, e.g.\ cache
 misses or pipeline stalls that can be characterised using external cache models
 or models of the micro architecture of the processor.
-
-Equation~\ref{e:tiwari} shows clearly the relation between the energy model and the
-analysis of the program.  The terms $B_i$, $O_{i,j}$ and $E_k$ are obtained from the energy
-model, and are program independent. The terms $N_i$ and $N_{i,j}$ are obtained by
-analysis of the program, either dynamically, by profiling and counting the number of 
-times each instruction or pair of instructions is executed, or statically as will be seen
-in Section \ref{sec:energy-analysis}.
 
 \todo[inline]{Maybe include Steinke / Sarta model that have far more detail - neither is useful for static analysis though.}
 
@@ -171,9 +146,8 @@ pseudo-randomly, constraining values to those valid for the respective
 instruction.
 %
 Evaluation of this multi-threaded instruction-level model showed average error
-margins of less than 7\%.
-% when used with instruction stream simulation to
-%instantiate the model parameters.
+margins of less than 7\% when used with instruction stream simulation to
+instantiate the model parameters.
 %
 However, the model was designed to be used for static energy consumption analysis,
 requiring static analysis techniques to determine the number of idle cycles and
@@ -233,25 +207,19 @@ the cost of idle periods must be determined for multi-threaded architectures,
 and communication costs must be considered for interacting multi-threaded
 programs running on multi-core platforms. 
 %
-%While characterising these costs can be very challenging, it can be even more
-%challenging to determine the corresponding model parameters, e.g.\ based on
-%execution or simulation statistics of the program or by statically extracting
-%them from the program.
+While characterising these costs can be very challenging, it can be even more
+challenging to determine the corresponding model parameters, e.g.\ based on
+execution or simulation statistics of the program or by statically extracting
+them from the program.
  
 
 \subsection{Energy modelling at higher levels of software abstraction}
 \label{subsec:mapping}
 
-Instruction-level energy models are 
-%practical 
-useful 
-due to the close, almost direct
+Instruction-level energy models are practical due to the close, almost direct
 link of measurements to programming constructs within the ISA. Energy models at
 higher levels of abstraction, however, provide more intuitive feedback to
-software and tool developers, 
-%all be it 
-albeit 
-at the cost of accuracy of the
+software and tool developers, all be it at the cost of accuracy of the
 predictions.
 
 Modelling at the level of the Intermediate Representation (IR) used by
@@ -289,22 +257,16 @@ manufacturer. The resulting model can be used to estimate the energy
 consumption of code for the target hardware, based solely on its
 target-independent LLVM IR.
 
-A 
-%direct 
-mapping technique that lifts an energy model at ISA level to LLVM IR
+A direct mapping technique that lifts an energy model at ISA level to LLVM IR
 level is described in~\cite{Georgiou15}. The energy characteristics of LLVM IR
 instructions are determined from the costs of the associated machine
 instructions based on a mapping that tracks which LLVM IR instructions created
 which machine instructions during the lowering phase of compilation, i.e.\
-after optimisation passes. 
-
+after optimisation passes.
 %
 The approach provides on-the-fly LLVM-IR energy characterisation that takes
 into consideration the context of instructions since there is no
 program-independent mapping between ISA instructions and LLVM instructions.
-Strictly speaking,
-the energy model is still at the ISA level; a program-dependent mapping is used to
-obtain energy costs of LLVM-IR instructions and blocks at compile time.
 %
 The technique has been used for static energy consumption analysis at the LLVM
 IR level in~\cite{Georgiou15},~\cite{isa-vs-llvm-fopara} and also
@@ -316,20 +278,17 @@ during code generation.
 In principle, the same mapping technique may be used to map the energy consumption
 of programs to even higher levels, such as source code blocks or functions. 
 
-An alternative approach to building a source-level energy model, used in \cite{LiGallagher-TSE-2016}
-to obtain a source code energy model for Android code, 
-is to identify
+An alternative approach to building a source-level energy model is to identify
 basic energy-consuming operations from the source code and correlate them to
-energy costs by measuring energy consumption in a large number of benchmark programs
+energy costs by measuring energy consumption in a large number of test cases
 and analysing the results using techniques based on regression analysis. The
 resulting energy model of the basic operations implicitly includes the effect
 of all the layers of the software stack down to the hardware, including
 compiled code, virtual machine and operating system layers. The approach is
 inherently approximate; nevertheless such an approach may be the only feasible
-one in cases where the software stack has many complex layers, rendering a
-mapping-based approach difficult or impossible.
+one in cases where the software stack has many complex layers.
 
-\subsection{The impact of data on the energy model}\label{subsec:data}
+\subsection{The impact of data on energy consumption of software}\label{subsec:data}
 
 The classic instruction level energy model as described in
 Section~\ref{subsec:isa} does not capture the impact of data on software energy
@@ -400,19 +359,14 @@ practice. Intuitively, this is because the data that causes the highest energy
 consumption for one instruction is very unlikely to produce output that will
 trigger the highest energy consumption also in subsequent instructions. 
 %
-
 This leads us to the question of which input data causes the worst energy
 consumption for a given program. This question is investigated
 in~\cite{2016arXiv160302580M}, where the problem of data-dependent energy
 consumption during program execution is formalised in terms of circuit
 switching and a formal proof is presented demonstrating that in general
-analysing switching in processor datapaths is NP-hard. Thus, 
-%accurate
-optimal
+analysing switching in processor datapaths is NP-hard. Thus, accurate
 data-sensitive worst case energy consumption analysis of programs is, in
-general, not achievable efficiently and alternative approaches 
-giving good approximations
-must be
+general, not achievable efficiently and alternative approaches must be
 developed. This is an area of ongoing research.
 
 In~\cite{pallister2015data} energy modelling for worst case energy consumption

@@ -59,7 +59,8 @@ The energy consumed by ICT is growing both in absolute terms and as a proportion
 
 As already pointed out, energy is consumed by hardware, but the software often causes a great deal of energy waste by inefficient use of the hardware.  Increasing the energy efficiency of the software is at least as effective as development of more energy-efficient hardware.
 Furber \cite{Furber2016} remarks 
-that ``if you want an ultimate low-power system, then you have to worry aboutenergy usage at every level in the system design."
+that ``if you want an ultimate low-power system, then you have to worry about
+energy usage at every level in the system design."
 Furthermore, in many cases the energy efficiency of software has a direct positive effect on the efficiency of other energy-related aspects of systems.  Obvious cases are cooling costs and battery costs -- cooling requirements for data centres are directly related to the power dissipated by the computations, while for mobile systems the number of battery replacements or recharges is similarly reduced if software is more energy-efficient.  
 
 \paragraph{Strategic motivation.} 
@@ -358,6 +359,29 @@ blocks.
   expensive blocks, which succeeded in increasing energy efficient by
   a factor of 6\% to 50\% in various use-case scenarios.
 \end{itemize}
+
+\section{Summary}\label{sec:summary}
+
+The purpose of this chapter was to motivate energy-aware software engineering and to outline the principles and methods underlying it.
+We discussed why it is worth focussing on energy efficiency during software development, and why energy efficiency should be
+a first class software design goal. 
+
+A key concept is energy transparency, which makes the energy consumption of a program explicit at the level of code, rather than at the
+level of hardware, where the energy is actually consumed. A substantial part of the chapter described the two
+main fields of study relevant to energy transparency, namely energy modelling and static analysis.
+Energy transparency is achieved by analysis of a program with respect to
+an energy model.  The model associates energy consumption costs with basic units of the software, such as instructions or statements, and
+includes also other costs and overheads. Static analysis for energy consumption
+ is a semantics-based formal technique, extending methods for automatic complexity analysis of programs,
+which is a branch of abstract interpretation.
+
+The last part of the chapter considered the various features of software that can affect energy consumption. An energy-aware developer 
+can use energy transparency to focus energy-aware design and optimisation in the most effective way. The field of
+energy-aware software engineering is only just emerging, and we described a number of activities that characterise
+energy-aware software engineering, extending or modifying conventional practices. The chapter concluded with
+a description of two short scenarios of energy-ware software engineering; however
+a great deal of further experience and 
+tool development is needed to realise the full vision.
 
 
 \section*{Acknowledgements}
