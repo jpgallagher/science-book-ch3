@@ -58,7 +58,7 @@ This is a worthwhile tradeoff because software development involves numerous
 iterations during the coding phase, and rapid feedback of resource usage is
 critical for software developers to make energy aware decisions.
 
-The model in~\cite{Tiwari-embedded-1994} captures the energy consumption
+The model in reference~\cite{Tiwari-embedded-1994} captures the energy consumption
 directly associated with processing each instruction, obtained by measuring the
 average current drawn while executing a dedicated loop that only contains
 independent instances of the respective instruction to be profiled, multiplied
@@ -164,14 +164,14 @@ scaled by the level of concurrency in the processor's pipeline as well as a
 constant overhead to account for circuit state switching between instructions.
 %
 Model characterisation was performed using a measurement setup and instruction
-loops similar to those originally proposed in~\cite{Tiwari-embedded-1994}. The
+loops similar to those originally proposed in reference~\cite{Tiwari-embedded-1994}. The
 individual instruction costs represent averages over measurements obtained from
 running loops with instructions using operands that were generated
 pseudo-randomly, constraining values to those valid for the respective
 instruction.
 %
 Evaluation of this multi-threaded instruction-level model showed average error
-margins of less than 7\%.\todo{should say how this evaluation was done - with ISS, then move to SA}
+margins of less than 7\%. \todo{should say how this evaluation was done - with ISS, then move to SA}
 % when used with instruction stream simulation to
 %instantiate the model parameters.
 %
@@ -266,7 +266,7 @@ one at ISA level, up to the IR level at compile time; both have been developed
 for LLVM IR~\cite{LattnerLLVM2004} in the context of the LLVM
 toolchain~\cite{LLVM}.
 
-In~\cite{Brandolese2011} statistical analysis has been employed to build an
+In reference ~\cite{Brandolese2011} statistical analysis was employed to build an
 energy model for LLVM IR for the purpose of fast and accurate early-stage
 prediction of the energy consumption of embedded software at the function level
 to enable compile-time energy optimisation.

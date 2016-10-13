@@ -14,6 +14,7 @@
 %\usepackage{subcaption}
 \usepackage{listings}
 \usepackage{caption,subcaption}
+\usepackage{cite}
 
 
 \input localdefs
@@ -53,7 +54,7 @@ In contrast to much work on energy efficiency of ICT, this chapter adopts a gene
 \section{Energy-aware software engineering and Green IT}
 \label{greenit}
 Concern over the increasing energy consumption and general environmental impact of ICT systems is growing.  As a part of this,
-there has been a growth of interest in the field of \emph{Green IT}  \cite{KrauseCraigWood2010,DBLP:journals/stt/NaumannKD13,DBLP:journals/infsof/CapraFS12,DBLP:journals/stt/NaumannKD13,Mahmoud_Ahmad_2013} since approximately 2010; for example the conference series International Green And Sustainable Computing Conference\footnote{\texttt{http://igsc.eecs.wsu.edu/} (formerly International Green Computing Conference (IGCC))} started in 2011 and the IEEE technical area of Green Computing\footnote{\texttt{http://sameekhan.org/tagc/}} was launched in 2010.  The Energy Aware COmputing workshop series\footnote{\texttt{http://www.cs.bris.ac.uk/Research/eaco/}} was initiated in Bristol in 2011.
+there has been a growth of interest in the field of \emph{Green IT}  \cite{KrauseCraigWood2010,DBLP:journals/stt/NaumannKD13,DBLP:journals/infsof/CapraFS12,Mahmoud_Ahmad_2013} since approximately 2010; for example the conference series International Green And Sustainable Computing Conference\footnote{\texttt{http://igsc.eecs.wsu.edu/} (formerly International Green Computing Conference (IGCC))} started in 2011 and the IEEE technical area of Green Computing\footnote{\texttt{http://sameekhan.org/tagc/}} was launched in 2010.  The Energy Aware COmputing workshop series\footnote{\texttt{http://www.cs.bris.ac.uk/Research/eaco/}} was initiated in Bristol in 2011.
 More recently, dedicated workshops such as GREENS\footnote{\texttt{http://greens.cs.vu.nl/}} and SMARTGREENS\footnote{\texttt{http://www.smartgreens.org/}} have been launched. 
 
 Green IT covers energy aspects of the complete life-cycle and context of ICT systems, including software and hardware, development energy costs, maintenance and deployment energy costs, cooling costs, the energy costs of communication infrastructure, raw materials and disposal costs and a host of other energy costs and environmental effects associated directly or indirectly with software systems. 
@@ -68,9 +69,9 @@ Energy-aware software development is therefore only one aspect of Green IT;  it 
 The energy consumed by ICT is growing both in absolute terms and as a proportion of the global energy consumption and thus plays an important role in meeting the targets of the Europe 2020 Agenda, which includes a goal to reduce greenhouse gas emissions by at least 20\% compared to 1990 levels.   Every device, from autonomous sensor systems operating at the mW level to high performance computing (HPC) systems and data centres requiring tens of MWs for operation, consumes a certain amount of energy which results in the emission of CO$_2$. 
 
 As already pointed out, energy is consumed by hardware, but the software often causes a great deal of energy waste by inefficient use of the hardware.  Increasing the energy efficiency of the software is at least as effective as development of more energy-efficient hardware.
-Furber \cite{Furber2016} remarks 
+Furber remarks 
 that ``if you want an ultimate low-power system, then you have to worry about
-energy usage at every level in the system design."
+energy usage at every level in the system design" \cite{Furber2016}.
 Furthermore, in many cases the energy efficiency of software has a direct positive effect on the efficiency of other energy-related aspects of systems.  Obvious cases are cooling costs and battery costs -- cooling requirements for data centres are directly related to the power dissipated by the computations, while for mobile systems the number of battery replacements or recharges is similarly reduced if software is more energy-efficient.  
 
 \paragraph{Strategic motivation.} 
@@ -400,7 +401,7 @@ This chapter is largely based on work done in the EU 7th Framework project ENTRA
 Thanks are due to all the participants in the project, especially Pedro L\'{o}pez Garc\'{i}a, Henk Muller, Steve Kerrison, Kyriakos Georgiou and Xueliang Li 
 for material incorporated in the chapter.
 
-\bibliographystyle{alpha}
+\bibliographystyle{unsrt}
 \bibliography{../../../ENTRA/entra-svn/bibtex/entra}
 
 \end{document}
