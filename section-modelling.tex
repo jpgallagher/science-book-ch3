@@ -292,7 +292,7 @@ target-independent LLVM IR.
 A 
 %direct 
 mapping technique that lifts an energy model at ISA level to LLVM IR
-level is described in~\cite{Georgiou15}. The energy characteristics of LLVM IR
+level is described in~\cite{DBLP:journals/corr/GeorgiouKE15}. The energy characteristics of LLVM IR
 instructions are determined from the costs of the associated machine
 instructions based on a mapping that tracks which LLVM IR instructions created
 which machine instructions during the lowering phase of compilation, i.e.\
@@ -307,7 +307,7 @@ the energy model is still at the ISA level; a program-dependent mapping is used 
 obtain energy costs of LLVM-IR instructions and blocks at compile time.
 %
 The technique has been used for static energy consumption analysis at the LLVM
-IR level in~\cite{Georgiou15},~\cite{isa-vs-llvm-fopara} and also
+IR level in~\cite{DBLP:journals/corr/GeorgiouKE15},~\cite{isa-vs-llvm-fopara} and also
 in~\cite{grech15}. The accuracy of energy consumption estimation at LLVM IR
 level is typically within 1\% to 3\% of that achieved using ISA-level models.
 This indicates excellent potential for exploiting this energy transparency
@@ -353,7 +353,7 @@ all 65536 combinations of 8-bit operands from 0 to 255. The colours in the
 ``heatmap'' range from dark blue, indicating low power, to dark red, indicating
 high power. 
 %
-In~\cite{pallister2015data} 15\% data induced variation has been reported for
+In~\cite{DBLP:journals/corr/PallisterKME15} 15\% data induced variation has been reported for
 the 8-bit AVR processor, while up to 1.7x data-dependent variation was observed
 for the 32-bit XMOS XCore in~\cite{DBLP:journals/tecs/KerrisonE15}. Variation
 of as much as 50\% is reported in~\cite{highdatadep} for an ST20 32-bit
@@ -403,7 +403,7 @@ trigger the highest energy consumption also in subsequent instructions.
 
 This leads us to the question of which input data causes the worst energy
 consumption for a given program. This question is investigated
-in~\cite{2016arXiv160302580M}, where the problem of data-dependent energy
+in~\cite{DBLP:journals/corr/MorseKE16}, where the problem of data-dependent energy
 consumption during program execution is formalised in terms of circuit
 switching and a formal proof is presented demonstrating that in general
 analysing switching in processor datapaths is NP-hard. Thus, 
@@ -415,7 +415,7 @@ giving good approximations
 must be
 developed. This is an area of ongoing research.
 
-In~\cite{pallister2015data} energy modelling for worst case energy consumption
+In~\cite{DBLP:journals/corr/PallisterKME15} energy modelling for worst case energy consumption
 analysis has been explored. The most promising approach uses probabilistic
 energy distributions to characterise individual instruction pairs and proposes
 techniques to compose these to block-level instruction sequences.
