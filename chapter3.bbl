@@ -1,20 +1,243 @@
-\newcommand{\etalchar}[1]{$^{#1}$}
-\begin{thebibliography}{KCWCW10}
+\begin{thebibliography}{10}
 
-\bibitem[CFS12]{DBLP:journals/infsof/CapraFS12}
+\bibitem{Furber2016}
+Steve Furber.
+\newblock Interview with {S}teve {F}urber: The designer of the {ARM} chip
+  shares lessons on energy-efficient computing.
+\newblock {\em ACM Queue}, 8(2), 2016.
+
+\bibitem{KrauseCraigWood2010}
+P.J. Krause, K.~Craig-Wood, and N.~Craig-Wood.
+\newblock {Green ICT}: {O}xymoron, or call to innovation?
+\newblock In {\em Proc. Green IT}, Singapore, 2010.
+
+\bibitem{DBLP:journals/stt/NaumannKD13}
+Stefan Naumann, Eva Kern, and Markus Dick.
+\newblock Classifying green software engineering - the {GREENSOFT} model.
+\newblock {\em Softwaretechnik-Trends}, 33(2), 2013.
+
+\bibitem{DBLP:journals/infsof/CapraFS12}
 Eugenio Capra, Chiara Francalanci, and Sandra Slaughter.
-\newblock Is software "green"? application development environments and energy
-  efficiency in open source applications.
+\newblock Is software ``green"? {A}pplication development environments and
+  energy efficiency in open source applications.
 \newblock {\em Information {\&} Software Technology}, 54(1):60--71, 2012.
 
-\bibitem[HK16]{KerrisonSwallow15}
-Simon~J. Hollis and Steve Kerrison.
-\newblock {Swallow: Building an Energy-Transparent Many-Core Embedded Real-Time
-  System}.
-\newblock In {\em 2016 Design, Automation \& Test in Europe (to appear)}. IEEE,
-  March 2016.
+\bibitem{Mahmoud_Ahmad_2013}
+Sara~S. Mahmoud and Imtiaz Ahmad.
+\newblock A green model for sustainable software engineering.
+\newblock {\em International Journal of Software Engineering and Its
+  Applications}, 7(4), July 2013.
 
-\bibitem[HLGL{\etalchar{+}}16]{staticprofiling-flops}
+\bibitem{Tiwari-embedded-1994}
+V.~Tiwari, S.~Malik, and A.~Wolfe.
+\newblock {\em Power analysis of embedded software: a first step towards
+  software power minimization}, pages 222--230.
+\newblock Kluwer Academic Publishers, 1994.
+\newblock 567021.
+
+\bibitem{TiwariWolfeInstructionLevelPowerAnalysi:1996}
+Vivek Tiwari, Sharad Malik, Andrew Wolfe, and Mike Tien-Chien~Lee.
+\newblock Instruction level power analysis and optimization of software.
+\newblock {\em The Journal of VLSI Signal Processing}, 13:223--238, 1996.
+\newblock 10.1007/BF01130407.
+
+\bibitem{XMOS:Arch}
+XMOS.
+\newblock xcore : Architecture overview.
+\newblock Technical report, XMOS Ltd., 2013.
+
+\bibitem{DBLP:journals/tecs/KerrisonE15}
+Steve Kerrison and Kerstin Eder.
+\newblock Energy modeling of software for a hardware multithreaded embedded
+  microprocessor.
+\newblock {\em {ACM} Trans. Embedded Comput. Syst.}, 14(3):56, 2015.
+
+\bibitem{phimodel}
+Yakun~Sophia Shao and David Brooks.
+\newblock {Energy characterization and instruction-level energy model of
+  Intel's Xeon Phi processor}.
+\newblock In {\em International Symposium on Low Power Electronics and Design
+  (ISLPED)}, pages 389--394. IEEE, November 2013.
+
+\bibitem{LattnerLLVM2004}
+C.~Lattner and V.S. Adve.
+\newblock {LLVM}: A compilation framework for lifelong program analysis and
+  transformation.
+\newblock In {\em Proc. of the 2004 International Symposium on Code Generation
+  and Optimization (CGO)}, pages 75--88. IEEE Computer Society, March 2004.
+
+\bibitem{LLVM}
+{LLVMorg}.
+\newblock {The LLVM Compiler Infrastructure}, November 2014.
+
+\bibitem{Brandolese2011}
+C.~Brandolese, S.~Corbetta, and W.~Fornaciari.
+\newblock Software energy estimation based on statistical characterization of
+  intermediate compilation code.
+\newblock In {\em Low Power Electronics and Design (ISLPED) 2011 International
+  Symposium on}, pages 333--338, Aug 2011.
+
+\bibitem{DBLP:journals/corr/GeorgiouKE15}
+Kyriakos Georgiou, Steve Kerrison, and Kerstin Eder.
+\newblock On the value and limits of multi-level energy consumption static
+  analysis for deeply embedded single and multi-threaded programs.
+\newblock {\em CoRR}, abs/1510.07095, 2015.
+
+\bibitem{isa-vs-llvm-fopara}
+U.~Liqat, K.~Georgiou, S.~Kerrison, P.~Lopez-Garcia, M.~V. Hermenegildo, J.~P.
+  Gallagher, and K.~Eder.
+\newblock {I}nferring {P}arametric {E}nergy {C}onsumption {F}unctions at
+  {D}ifferent {S}oftware {L}evels: {ISA} vs. {LLVM IR}.
+\newblock In M.~Van Eekelen and U.~Dal Lago, editors, {\em Foundational and
+  Practical Aspects of Resource Analysis. Fourth International Workshop FOPARA
+  2015, Revised Selected Papers}, volume 9964 of {\em Lecture Notes in Computer
+  Science}. Springer, 2016.
+
+\bibitem{grech15}
+Neville Grech, Kyriakos Georgiou, James Pallister, Steve Kerrison, Jeremy
+  Morse, and Kerstin Eder.
+\newblock Static analysis of energy consumption for {LLVM IR} programs.
+\newblock In {\em Proceedings of the 18th International Workshop on Software
+  and Compilers for Embedded Systems}, SCOPES 2015, pages 12--21, New York, NY,
+  USA, 2015. ACM.
+
+\bibitem{LiGallagherMobiquitous2016}
+Xueliang Li and John~P. Gallagher.
+\newblock Fine-grained energy modeling for the source code of a mobile
+  application.
+\newblock In {\em 13th Annual International Conference on Mobile and Ubiquitous
+  Systems: Computing, Networking and Services (Mobiquitous 2016)}, 2016.
+
+\bibitem{DBLP:journals/corr/PallisterKME15}
+James Pallister, Steve Kerrison, Jeremy Morse, and Kerstin Eder.
+\newblock Data dependent energy modeling for worst case energy consumption
+  analysis.
+\newblock {\em CoRR}, abs/1505.03374, 2015.
+
+\bibitem{highdatadep}
+Giuseppe Ascia, Vincenzo Catania, Maurizio Palesi, and Davide Sarta.
+\newblock {An instruction-level power analysis model with data dependency}.
+\newblock {\em {VLSI DESIGN}}, {12}({2}):{245--273}, {2001}.
+
+\bibitem{DBLP:journals/tecs/WilhelmEEHTWBFHMMPPSS08}
+R.~Wilhelm, J.~Engblom, A.~Ermedahl, N.~Holsti, S.~Thesing, D.B. Whalley,
+  G.~Bernat, C.~Ferdinand, R.~Heckmann, T.~Mitra, F.~Mueller, I.~Puaut, P.P.
+  Puschner, J.~Staschulat, and P.~Stenstr{\"o}m.
+\newblock The worst-case execution-time problem - {O}verview of methods and
+  survey of tools.
+\newblock {\em ACM Trans. Embedded Comput. Syst.}, 7(3), 2008.
+
+\bibitem{influence-wilhelm-2003}
+R.~Heckmann, M.~Langenbach, S.~Thesing, and R.~Wilhelm.
+\newblock The influence of processor architecture on the design and the results
+  of {WCET} tools.
+\newblock {\em Proceedings of the IEEE}, 91(7):1038--1054, July 2003.
+
+\bibitem{Wagemann-2015-WCEC}
+P.~Wagemann, T.~Distler, T.~Honig, H.~Janker, R.~Kapitza, and
+  W.~Schroder-Preikschat.
+\newblock Worst-case energy consumption analysis for energy-constrained
+  embedded systems.
+\newblock In {\em Real-Time Systems (ECRTS), 2015 27th Euromicro Conference
+  on}, pages 105--114, July 2015.
+
+\bibitem{DBLP:journals/corr/MorseKE16}
+Jeremy Morse, Steve Kerrison, and Kerstin Eder.
+\newblock On the infeasibility of analysing worst-case dynamic energy.
+\newblock {\em CoRR}, abs/1603.02580, 2016.
+
+\bibitem{DBLP:conf/birthday/BjornerGMR15}
+Nikolaj Bj{\o}rner, Arie Gurfinkel, Kenneth~L. McMillan, and Andrey
+  Rybalchenko.
+\newblock Horn clause solvers for program verification.
+\newblock In Lev~D. Beklemishev, Andreas Blass, Nachum Dershowitz, Bernd
+  Finkbeiner, and Wolfram Schulte, editors, {\em Fields of Logic and
+  Computation {II} - Essays Dedicated to Yuri Gurevich on the Occasion of His
+  75th Birthday}, volume 9300 of {\em Lecture Notes in Computer Science}, pages
+  24--51. Springer, 2015.
+
+\bibitem{isa-energy-lopstr13-final}
+U.~Liqat, S.~Kerrison, A.~Serrano, K.~Georgiou, P.~Lopez-Garcia, N.~Grech, M.V.
+  Hermenegildo, and K.~Eder.
+\newblock {E}nergy {C}onsumption {A}nalysis of {P}rograms based on {XMOS}
+  {ISA}-level {M}odels.
+\newblock In Gopal Gupta and Ricardo Peña, editors, {\em Logic-Based Program
+  Synthesis and Transformation, 23rd International Symposium, {LOPSTR} 2013,
+  Revised Selected Papers}, volume 8901 of {\em Lecture Notes in Computer
+  Science}, pages 72--90. Springer, 2014.
+
+\bibitem{DBLP:conf/ppdp/AngelisFPP15}
+Emanuele {De Angelis}, Fabio Fioravanti, Alberto Pettorossi, and Maurizio
+  Proietti.
+\newblock Semantics-based generation of verification conditions by program
+  specialization.
+\newblock In Moreno Falaschi and Elvira Albert, editors, {\em Proceedings of
+  the 17th International Symposium on Principles and Practice of Declarative
+  Programming, Siena, Italy, July 14-16, 2015}, pages 91--102. {ACM}, 2015.
+
+\bibitem{GrebenshchikovLPR12}
+Sergey Grebenshchikov, Nuno~P. Lopes, Corneliu Popeea, and Andrey Rybalchenko.
+\newblock Synthesizing software verifiers from proof rules.
+\newblock In Jan Vitek, Haibo Lin, and Frank Tip, editors, {\em ACM SIGPLAN
+  Conference on Programming Language Design and Implementation, PLDI '12},
+  pages 405--416. ACM, 2012.
+
+\bibitem{Cousot1977}
+Patrick Cousot and Radhia Cousot.
+\newblock Abstract interpretation: A unified lattice model for static analysis
+  of programs by construction or approximation of fixpoints.
+\newblock In Robert~M. Graham, Michael~A. Harrison, and Ravi Sethi, editors,
+  {\em POPL}, pages 238--252. ACM, 1977.
+
+\bibitem{DBLP:journals/cacm/Wegbreit75}
+B.~Wegbreit.
+\newblock Mechanical program analysis.
+\newblock {\em Commun. ACM}, 18(9):528--539, 1975.
+
+\bibitem{Rosendahl89}
+M.~Rosendahl.
+\newblock {A}utomatic {C}omplexity {A}nalysis.
+\newblock In {\em 4th ACM {C}onference on {F}unctional {P}rogramming
+  {L}anguages and {C}omputer {A}rchitecture (FPCA'89)}, pages 144--156. ACM
+  Press, 1989.
+
+\bibitem{caslog}
+S.~K. Debray and N.~W. Lin.
+\newblock {Cost Analysis of Logic Programs}.
+\newblock {\em {ACM} Transactions on Programming Languages and Systems},
+  15(5):826--875, November 1993.
+
+\bibitem{resource-iclp07}
+J.~Navas, E.~Mera, P.~L\'{o}pez-Garc\'{i}a, and M.~Hermenegildo.
+\newblock {U}ser-{D}efinable {R}esource {B}ounds {A}nalysis for {L}ogic
+  {P}rograms.
+\newblock In {\em International Conference on Logic Programming (ICLP'07)},
+  Lecture Notes in Computer Science, pages 348--363. Springer, 2007.
+
+\bibitem{jvm-cost-esop}
+E.~Albert, P.~Arenas, S.~Genaim, G.~Puebla, and D.~Zanardini.
+\newblock Cost {A}nalysis of {J}ava {B}ytecode.
+\newblock In Rocco~De Nicola, editor, {\em 16th European Symposium on
+  Programming, ESOP'07}, volume 4421 of {\em Lecture Notes in Computer
+  Science}, pages 157--172. Springer, March 2007.
+
+\bibitem{ciaopp-sas03-journal-scp}
+M.~Hermenegildo, G.~Puebla, F.~Bueno, and P.~Lopez-Garcia.
+\newblock {I}ntegrated {P}rogram {D}ebugging, {V}erification, and
+  {O}ptimization {U}sing {A}bstract {I}nterpretation (and {T}he {C}iao {S}ystem
+  {P}reprocessor).
+\newblock {\em Science of Computer Programming}, 58(1--2):115--140, October
+  2005.
+
+\bibitem{AlbertAGPZ08b}
+E.~Albert, P.~Arenas, S.~Genaim, G.~Puebla, and D.~Zanardini.
+\newblock {COSTA}: {A} {C}ost and {T}ermination {A}nalyzer for {J}ava
+  {B}ytecode.
+\newblock In {\em Proceedings of the Workshop on Bytecode Semantics,
+  Verification, Analysis and Transformation (BYTECODE'08)}, Electronic Notes in
+  Theoretical Computer Science, Budapest, Hungary, April 2008. Elsevier.
+
+\bibitem{staticprofiling-flops}
 R.~Haemmerl{\'e}, P.~Lopez-Garcia, U.~Liqat, M.~Klemen, J.~P. Gallagher, and
   M.~V. Hermenegildo.
 \newblock {A} {T}ransformational {A}pproach to {P}arametric {A}ccumulated-cost
@@ -23,46 +246,36 @@ R.~Haemmerl{\'e}, P.~Lopez-Garcia, U.~Liqat, M.~Klemen, J.~P. Gallagher, and
   Symposium on Functional and Logic Programming (FLOPS 2016)}, volume 9613 of
   {\em LNCS}, pages 163--180. Springer, March 2016.
 
-\bibitem[KCWCW10]{KrauseCraigWood2010}
-P.J. Krause, K.~Craig-Wood, and N.~Craig-Wood.
-\newblock {Green ICT}: {O}xymoron, or call to innovation?
-\newblock In {\em Proc. Green IT}, Singapore, 2010.
-
-\bibitem[Lar11]{Larsson2011}
-Petter Larsson.
-\newblock Energy-efficient software guidelines.
-\newblock Technical report, Intel Software Solutions Group, 2011.
-
-\bibitem[LG16]{LiGallagher-TSE-2016}
-Xueliang Li and John~P. Gallagher.
-\newblock An energy-aware programming approach for mobile application
-  development guided by a fine-grained energy model.
-\newblock Technical report, Roskilde University, February 2016.
-\newblock submitted for publication.
-
-\bibitem[MA13]{Mahmoud_Ahmad_2013}
-Sara~S. Mahmoud and Imtiaz Ahmad.
-\newblock A green model for sustainable software engineering.
-\newblock {\em International Journal of Software Engineering and Its
-  Applications}, 7(4), July 2013.
-
-\bibitem[NKD13]{DBLP:journals/stt/NaumannKD13}
-Stefan Naumann, Eva Kern, and Markus Dick.
-\newblock Classifying green software engineering - the {GREENSOFT} model.
-\newblock {\em Softwaretechnik-Trends}, 33(2), 2013.
-
-\bibitem[RJ97]{Roy_Johnson_1997}
+\bibitem{Roy_Johnson_1997}
 Kaushik Roy and Mark~C. Johnson.
 \newblock {S}oftware {D}esign for {L}ow {P}ower.
 \newblock In Wolfgang Nebel and Jean~P. Mermet, editors, {\em Low Power Design
   in Deep Submicron Electronics}, volume 337, pages 433--460. Kluwer Academic,
   1997.
 
-\bibitem[SA12]{Steigerwald_Agrawal_2011}
+\bibitem{Larsson2011}
+Petter Larsson.
+\newblock Energy-efficient software guidelines.
+\newblock Technical report, Intel Software Solutions Group, 2011.
+
+\bibitem{Steigerwald_Agrawal_2011}
 B.~Steigerwald and A.~Agrawal.
 \newblock Green software.
 \newblock In San Murugesan and G.~R. Gangadharan, editors, {\em Harnessing
   Green IT : Principles and Practices}, chapter~3. John Wiley \& Sons, Hoboken,
   NJ, USA, 2012.
+
+\bibitem{KerrisonSwallow15}
+Simon~J. Hollis and Steve Kerrison.
+\newblock {Swallow: Building an Energy-Transparent Many-Core Embedded Real-Time
+  System}.
+\newblock In {\em 2016 Design, Automation \& Test in Europe}. IEEE, March 2016.
+
+\bibitem{LiGallagherSCAM2016}
+Xueliang Li and John~P. Gallagher.
+\newblock A source-level energy optimization framework for mobile applications.
+\newblock In Gabriele Bavota and Michaela Greiler, editors, {\em 16th IEEE
+  International Working Conference on Source Code Analysis and Manipulation
+  (SCAM 2016)}, 2016.
 
 \end{thebibliography}
